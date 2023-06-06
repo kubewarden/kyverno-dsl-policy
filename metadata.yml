@@ -1,0 +1,19 @@
+rules:
+- apiGroups: [""]
+  apiVersions: ["v1"]
+  resources: ["pods"]
+  operations: ["CREATE", "UPDATE"]
+mutating: false
+contextAware: false
+executionMode: wasi
+annotations:
+  io.kubewarden.policy.title: kyverno-validator
+  io.artifacthub.displayName: Kyverno validator
+  io.artifacthub.resources: Pod
+  io.artifacthub.keywords: psp, container, runtime
+  io.kubewarden.policy.description: This is a POC
+  io.kubewarden.policy.author: "Kubewarden developers <cncf-kubewarden-maintainers@lists.cncf.io>"
+  io.kubewarden.policy.ociUrl: ghcr.io/kubewarden/policies/kyverno-validator
+  io.kubewarden.policy.url: https://github.com/kubewarden/kyverno-validator
+  io.kubewarden.policy.source: https://github.com/kubewarden/kyverno-validator-wasm
+  io.kubewarden.policy.license: Apache-2.0

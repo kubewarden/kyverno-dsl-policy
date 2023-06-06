@@ -1,0 +1,37 @@
+{
+  "uid": "1299d386-525b-4032-98ae-1949f69f9cfc",
+  "kind": {
+    "kind": "Pod",
+    "version": "v1"
+  },
+  "object": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "name": "nginx",
+      "annotations": {
+        "fluxcd.io/cat": "felix"
+      }
+    },
+    "spec": {
+      "containers": [
+        {
+          "image": "nginx",
+          "name": "nginx"
+        }
+      ]
+    }
+  },
+  "operation": "CREATE",
+  "requestKind": {
+    "version": "v1",
+    "kind": "Pod"
+  },
+  "userInfo": {
+    "username": "alice",
+    "uid": "alice-uid",
+    "groups": [
+      "system:authenticated"
+    ]
+  }
+}
