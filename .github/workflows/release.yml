@@ -1,9 +1,9 @@
 on:
   push:
     branches:
-    - main
+      - main
     tags:
-    - 'v*'
+      - "v*"
 
 name: Release policy
 
@@ -20,34 +20,23 @@ jobs:
       id-token: write
 
     steps:
-      -
-        name: Install dependencies
+      - name: Install dependencies
         uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.4
-      -
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           # until https://github.com/actions/checkout/pull/579 is released
           fetch-depth: 0
-      -
-        name: Install Go tip
-        run: |
-          curl -sL https://storage.googleapis.com/go-build-snap/go/linux-amd64/$(git ls-remote https://github.com/golang/go.git HEAD | awk '{print $1;}').tar.gz -o gotip.tar.gz
-          ls -lah gotip.tar.gz
-          mkdir -p ~/sdk/gotip
-          tar -C ~/sdk/gotip -xzf gotip.tar.gz
-          ~/sdk/gotip/bin/go version
-          echo "PATH=$HOME/go/bin:$HOME/sdk/gotip/bin/:$PATH" >> $GITHUB_ENV
-      -
-        name: Build & annotate
+      - uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # v4
+        with:
+          go-version: "1.21"
+      - name: Build & annotate
         run: |
           GOOS=wasip1 GOARCH=wasm go build -o policy.wasm
           make annotated-policy.wasm
-      -
-        name: Run e2e tests
+      - name: Run e2e tests
         run: |
           make e2e-tests
-      -
-        name: Release
+      - name: Release
         uses: kubewarden/github-actions/policy-release@v3.1.4
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
