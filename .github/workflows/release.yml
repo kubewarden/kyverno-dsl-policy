@@ -21,7 +21,12 @@ jobs:
 
     steps:
       - name: Install dependencies
-        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.4
+        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.9
+      - name: Install experiemental kwctl
+        # TODO: remove once we release kubewarden 1.7.0
+        uses: kubewarden/github-actions/kwctl-installer@v3.1.9
+        with:
+          KWCTL_VERSION: v1.7.0-rc2
       - uses: actions/checkout@v3
         with:
           # until https://github.com/actions/checkout/pull/579 is released
