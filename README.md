@@ -1,6 +1,6 @@
 > **WARNING:** this is an experimental policy
 
-This policy aims to provide a way to reuse Kyverno policies with Kubewarden.
+This policy aims to provide a way to reuse [Kyverno policies](https://kyverno.io/docs/writing-policies/) with Kubewarden.
 
 ## Policy goals
 
@@ -9,31 +9,61 @@ It does not intend to provide a way to use Kyverno's generating policies.
 
 ## Known limitations
 
-Technical limitations caused by Go compiler not having a mature
-[WASI](https://wasi.dev/) support:
+### Go compiler
 
-* The policy requires Go 1.21 or later. Currently this is not yet published,
-  hence a Go compiler built from the [`master`](https://github.com/golang/go)
-  is required
-* The size of the policy is huge: approximatively 90 Mb
-* The 1st run of the policy is slow because code has to be optimized and compiled
-  by Wasmtime for the local machine. Subsequent invocations are fast
-* This policy requires Kubewarden to support the new `wasi` execution mode. This
-  mode provides slower evaluation time compared to the traditional `wapc` one.
-  Once [this](https://github.com/golang/go/issues/42372) Go issue is addressed, the
-  policy will be rewritten to make use of the traditional Kubewarden policy
-  interface.
+Kyverno evaluation code is too complex for TinyGo. Because of that, the official Go compiler
+must be used to compile this policy.
+Building the policy policy requires Go 1.21 or later, which introduces support for the [WASI](https://wasi.dev/) target.
 
-Limitations due to the maturity of this code base:
+### Execution mode
 
-* Policy settings are not supported
-* Mutation support is not yet done
-* Context aware information are not provided to the policy
+Currently the WASI modules produce by the Go compiler cannot export functions.
+This is a [known issue](https://github.com/golang/go/issues/42372) that is going
+to be addressed by future releases of Go. In the meantime, this policy leverages the new
+[WASI excution mode](https://docs.kubewarden.io/writing-policies/wasi) offered starting from
+the Kubewarden 1.7.0 release. Once the linked Go issue is fixed, the policy can be rewritten
+to make use of the traditional [waPC execution mode](https://docs.kubewarden.io/writing-policies/spec/intro-spec).
+
+### Size and startup time
+
+The amount of code, and dependencies, required to evaluate Kyverno policies is significant.
+The size of this policy is huge, it's approximatively 90 Mb. For comparison, a traditional
+Kubewarden policy size ranges from 100 Kb up to 2 Mb.
+
+This not only increases the download time, but it takes a long time to be optimized by the
+JIT compiler of Wasmtime. This means the first run of the policy is going to be slow, while
+the subsequent ones are going to be fast.
+
+When used inside of a Kubernetes cluster, it's highly recommended to deploy this policy to a
+dedicated Policy Server. In this way, specific Policy Servers are going to be impacted by the
+slow startup times and the higher memory usage caused by this policy.
+
+To do that, start by deploy a dedicated Policy Server:
+
+```yaml
+apiVersion: policies.kubewarden.io/v1
+kind: PolicyServer
+metadata:
+  name: kyverno-only
+spec:
+  image: ghcr.io/kubewarden/policy-server:v1.7.0
+  replicas: 2
+  serviceAccountName: ~
+```
+
+Then deploy the policy to this specific Policy Server by using the
+`spec.policyServer` attribute. This is going to be shown in the example below.
+
+### Limitations due to the maturity of this codebase
+
+- Policy settings are not supported
+- Mutation support is not yet done
+- Context aware information are not provided to the policy
 
 ## Usage
 
-The policy provides the Kyverno evaluation engine, the actual policy has to
-be provided via the policy settings.
+The policy provides the Kyverno evaluation engine, the actual policy is specified
+via the policy settings.
 
 This is done using the `policy` key, that has as value a string holding the actual
 YAML definition of the Kyverno policy.
@@ -92,15 +122,15 @@ kind: ClusterAdmissionPolicy
 metadata:
   name: allowed-flux-annotations
 spec:
-  policyServer: reserved-instance-for-tenant-a
+  policyServer: kyverno-only
   module: registry://ghcr.io/kubewarden/policies/kyverno-dsl:v0.1.0
   rules:
-  - apiGroups: [""]
-    apiVersions: ["v1"]
-    resources: ["pods"]
-    operations:
-    - CREATE
-    - UPDATE
+    - apiGroups: [""]
+      apiVersions: ["v1"]
+      resources: ["pods"]
+      operations:
+        - CREATE
+        - UPDATE
   mutating: false
   settings:
     policy: |
@@ -142,3 +172,5 @@ spec:
                   - fluxcd.io/cow
                   - fluxcd.io/dog
 ```
+
+> **Note:** this is policy is going to be deployed on a Policy Server named `kyverno-only`
