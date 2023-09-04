@@ -353,7 +353,7 @@ github.com/klauspost/compress/internal/cpuinfo
 github.com/klauspost/compress/internal/snapref
 github.com/klauspost/compress/zstd
 github.com/klauspost/compress/zstd/internal/xxhash
-# github.com/kyverno/kyverno v1.9.3 => ./third_party/kyverno-lite
+# github.com/kyverno/kyverno v1.10.0 => ./third_party/kyverno-lite
 ## explicit; go 1.20
 github.com/kyverno/kyverno/api/kyverno
 github.com/kyverno/kyverno/api/kyverno/v1
