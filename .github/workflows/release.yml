@@ -45,7 +45,7 @@ jobs:
         run: |
           make e2e-tests
       - name: Release
-        uses: kubewarden/github-actions/policy-release@v3.1.4
+        uses: kubewarden/github-actions/policy-release@v3.1.9
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           oci-target: ghcr.io/${{ github.repository_owner }}/policies/kyverno-dsl
