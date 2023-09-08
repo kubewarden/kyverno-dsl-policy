@@ -23,7 +23,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/robfig/cron v1.2.0
 	github.com/sigstore/cosign v1.13.1
-	github.com/stretchr/testify v1.8.2
+	github.com/stretchr/testify v1.8.4
 	github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.37.0
 	go.opentelemetry.io/otel v1.11.2

@@ -857,6 +857,8 @@ github.com/kunwardeep/paralleltest v1.0.2/go.mod h1:ZPqNm1fVHPllh5LPVujzbVz1JN2G
 github.com/kylelemons/godebug v1.1.0 h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0SNc=
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/kyoh86/exportloopref v0.1.8/go.mod h1:1tUcJeiioIs7VWe5gcOObrux3lb66+sBqGZrRkMwPgg=
+github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6 h1:3toVuFm87/kV8FSub2JSnjSuLz3l521ON4sOpvuTNbk=
+github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6/go.mod h1:T8mJZnbsbmF+m6zOOFylbeCJqk5+pHWvzYPziyZiYoo=
 github.com/kyverno/kyverno v1.9.3 h1:ICf6WlibUBFtiZKwh1V8oo3Uh1pN3udJfSnGwdzNU3s=
 github.com/kyverno/kyverno v1.9.3/go.mod h1:soKPMancDLKGm3AAq/N5yKP0OvRDZIx3SnciGRn3gxo=
 github.com/ldez/gomoddirectives v0.2.1/go.mod h1:sGicqkRgBOg//JfpXwkB9Hj0X5RyJ7mlACM5B9f6Me4=
@@ -1270,6 +1272,8 @@ github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.2 h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8=
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
+github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
+github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
 github.com/subosito/gotenv v1.2.0/go.mod h1:N0PQaV/YGNqwC0u51sEeR/aUtSLEXKX9iv69rRypqCw=
 github.com/subosito/gotenv v1.4.1 h1:jyEFiXpy21Wm81FBN71l9VoMMV8H8jG+qIK3GCpY6Qs=
 github.com/subosito/gotenv v1.4.1/go.mod h1:ayKnFf/c6rvx/2iiLrJUk1e6plDbT3edrFNGqEflhK0=
