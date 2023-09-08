@@ -7,7 +7,7 @@ replace (
 	github.com/kyverno/kyverno => ./third_party/kyverno-lite
 
 	// TODO: replace with the next release of logrus
-	github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2-wasip1
+	github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2
 )
 
 require (

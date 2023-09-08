@@ -465,7 +465,7 @@ github.com/sigstore/rekor/pkg/generated/models
 # github.com/sigstore/sigstore v1.5.1
 ## explicit; go 1.18
 github.com/sigstore/sigstore/pkg/cryptoutils
-# github.com/sirupsen/logrus v1.9.2 => github.com/flavio/logrus v1.9.2-wasip1
+# github.com/sirupsen/logrus v1.9.2 => github.com/flavio/logrus v1.9.2
 ## explicit; go 1.13
 github.com/sirupsen/logrus
 # github.com/smartystreets/goconvey v1.8.0
@@ -1274,4 +1274,4 @@ sigs.k8s.io/structured-merge-diff/v4/value
 sigs.k8s.io/yaml
 # github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6
 # github.com/kyverno/kyverno => ./third_party/kyverno-lite
-# github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2-wasip1
+# github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2
