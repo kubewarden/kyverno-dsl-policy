@@ -17,7 +17,7 @@ require (
 	github.com/go-logr/zapr v1.2.4
 	github.com/google/gnostic v0.6.9
 	github.com/google/go-containerregistry v0.15.2
-	github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230522195908-1d535e24741c
+	github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230919002926-dbcd01c402b2
 	github.com/jmespath/go-jmespath v0.4.0
 	github.com/kyverno/kyverno v1.9.3
 	github.com/pkg/errors v0.9.1

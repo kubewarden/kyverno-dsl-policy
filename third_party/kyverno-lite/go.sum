@@ -634,6 +634,8 @@ github.com/google/go-containerregistry v0.15.2 h1:MMkSh+tjSdnmJZO7ljvEqV1DjfekB6
 github.com/google/go-containerregistry v0.15.2/go.mod h1:wWK+LnOv4jXMM23IT/F1wdYftGWGr47Is8CG+pmHK1Q=
 github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230522195908-1d535e24741c h1:woVEpUoKp19jSiFufK9hSEfFctfWqq1MUCg3VAHfQ6Y=
 github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230522195908-1d535e24741c/go.mod h1:5sSbf/SbGGvjWIlMlt2bkEqOq+ufOIBYrBevLuxbfSs=
+github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230919002926-dbcd01c402b2 h1:+GG4cFNRo2vJX+7J2VFdQfVYafZ12yTXeEy8ZtOU7lw=
+github.com/google/go-containerregistry/pkg/authn/kubernetes v0.0.0-20230919002926-dbcd01c402b2/go.mod h1:5sSbf/SbGGvjWIlMlt2bkEqOq+ufOIBYrBevLuxbfSs=
 github.com/google/go-github/v45 v45.2.0 h1:5oRLszbrkvxDDqBCNj2hjDZMKmvexaZ1xw/FCD+K3FI=
 github.com/google/go-github/v45 v45.2.0/go.mod h1:FObaZJEDSTa/WGCzZ2Z3eoCDXWJKMenWWTrd8jrta28=
 github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=
@@ -857,6 +859,8 @@ github.com/kunwardeep/paralleltest v1.0.2/go.mod h1:ZPqNm1fVHPllh5LPVujzbVz1JN2G
 github.com/kylelemons/godebug v1.1.0 h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0SNc=
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/kyoh86/exportloopref v0.1.8/go.mod h1:1tUcJeiioIs7VWe5gcOObrux3lb66+sBqGZrRkMwPgg=
+github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6 h1:3toVuFm87/kV8FSub2JSnjSuLz3l521ON4sOpvuTNbk=
+github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6/go.mod h1:T8mJZnbsbmF+m6zOOFylbeCJqk5+pHWvzYPziyZiYoo=
 github.com/kyverno/kyverno v1.9.3 h1:ICf6WlibUBFtiZKwh1V8oo3Uh1pN3udJfSnGwdzNU3s=
 github.com/kyverno/kyverno v1.9.3/go.mod h1:soKPMancDLKGm3AAq/N5yKP0OvRDZIx3SnciGRn3gxo=
 github.com/ldez/gomoddirectives v0.2.1/go.mod h1:sGicqkRgBOg//JfpXwkB9Hj0X5RyJ7mlACM5B9f6Me4=
