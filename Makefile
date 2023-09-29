@@ -6,7 +6,7 @@ VERSION ?= $(shell git describe | cut -c2-)
 
 
 policy.wasm: $(SOURCE_FILES) go.mod go.sum
-	GOOS=wasip1 GOARCH=wasm gotip build -o policy.wasm
+	GOOS=wasip1 GOARCH=wasm go build -o policy.wasm
 
 artifacthub-pkg.yml: metadata.yml go.mod
 	$(warning If you are updating the artifacthub-pkg.yml file for a release, \
@@ -17,7 +17,7 @@ artifacthub-pkg.yml: metadata.yml go.mod
 	  --metadata-path metadata.yml --version $(VERSION) \
 	  --output artifacthub-pkg.yml
 
-annotated-policy.wasm: policy.wasm metadata.yml artifacthub-pkg.yml
+annotated-policy.wasm: policy.wasm metadata.yml
 	kwctl annotate -m metadata.yml -u README.md -o annotated-policy.wasm policy.wasm
 
 .PHONY: lint
