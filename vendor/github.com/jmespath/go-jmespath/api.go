@@ -6,7 +6,18 @@ import "strconv"
 // safe for concurrent use by multiple goroutines.
 type JMESPath struct {
 	ast  ASTNode
-	intr *treeInterpreter
+	intr Interpreter
+}
+
+func NewJMESPath(ast ASTNode, intr Interpreter) *JMESPath {
+	return &JMESPath{ast: ast, intr: intr}
+}
+
+type Interpreter interface {
+	// Interpret the node and return results
+	Execute(node ASTNode, value interface{}) (interface{}, error)
+	// Register a function
+	Register(f FunctionEntry)
 }
 
 // Compile parses a JMESPath expression and returns, if successful, a JMESPath
@@ -17,7 +28,7 @@ func Compile(expression string) (*JMESPath, error) {
 	if err != nil {
 		return nil, err
 	}
-	jmespath := &JMESPath{ast: ast, intr: newInterpreter()}
+	jmespath := &JMESPath{ast: ast, intr: NewInterpreter()}
 	return jmespath, nil
 }
 
@@ -39,7 +50,7 @@ func (jp *JMESPath) Search(data interface{}) (interface{}, error) {
 
 // Search evaluates a JMESPath expression against input data and returns the result.
 func Search(expression string, data interface{}) (interface{}, error) {
-	intr := newInterpreter()
+	intr := NewInterpreter()
 	parser := NewParser()
 	ast, err := parser.Parse(expression)
 	if err != nil {
@@ -48,6 +59,6 @@ func Search(expression string, data interface{}) (interface{}, error) {
 	return intr.Execute(ast, data)
 }
 
-func (jp *JMESPath) Register(f *FunctionEntry) {
-	jp.intr.fCall.functionTable[f.Name] = *f
+func (jp *JMESPath) Register(f FunctionEntry) {
+	jp.intr.Register(f)
 }

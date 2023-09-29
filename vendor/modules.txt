@@ -335,7 +335,7 @@ github.com/imdario/mergo
 # github.com/inconshreveable/mousetrap v1.1.0
 ## explicit; go 1.18
 github.com/inconshreveable/mousetrap
-# github.com/jmespath/go-jmespath v0.4.0 => github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6
+# github.com/jmespath/go-jmespath v0.4.0 => github.com/kyverno/go-jmespath v0.4.1-0.20230928151013-bf1569660fd8
 ## explicit; go 1.14
 github.com/jmespath/go-jmespath
 # github.com/josharian/intern v1.0.0
@@ -1272,6 +1272,6 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
-# github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6
+# github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20230928151013-bf1569660fd8
 # github.com/kyverno/kyverno => ./third_party/kyverno-lite
 # github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2-wasip1

@@ -2,7 +2,7 @@ module github.com/kubewaden/kyverno-lite
 
 go 1.20
 
-replace github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6
+replace github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20230928151013-bf1569660fd8
 
 require (
 	github.com/IGLOU-EU/go-wildcard v1.0.3
@@ -23,7 +23,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/robfig/cron v1.2.0
 	github.com/sigstore/cosign v1.13.1
-	github.com/stretchr/testify v1.8.2
+	github.com/stretchr/testify v1.8.4
 	github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.37.0
 	go.opentelemetry.io/otel v1.11.2

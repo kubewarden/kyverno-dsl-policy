@@ -386,7 +386,14 @@ func (lexer *Lexer) consumeUnquotedIdentifier() token {
 	start := lexer.currentPos - lexer.lastWidth
 	for {
 		r := lexer.next()
-		if r < 0 || r > 128 || identifierTrailingBits[uint64(r)/64]&(1<<(uint64(r)%64)) == 0 {
+		if r < 0 || r > 128 {
+			lexer.back()
+			break
+		}
+		if uint64(r)/64 > uint64(len(identifierTrailingBits))-1 {
+			break
+		}
+		if identifierTrailingBits[uint64(r)/64]&(1<<(uint64(r)%64)) == 0 {
 			lexer.back()
 			break
 		}
