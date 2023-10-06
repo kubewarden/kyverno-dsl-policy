@@ -8,9 +8,11 @@ import (
 	"strings"
 
 	kyvernov1 "github.com/kyverno/kyverno/api/kyverno/v1"
+	"github.com/kyverno/kyverno/pkg/config"
 	"github.com/kyverno/kyverno/pkg/engine"
 	enginecontext "github.com/kyverno/kyverno/pkg/engine/context"
-	"github.com/kyverno/kyverno/pkg/registryclient"
+	"github.com/kyverno/kyverno/pkg/engine/factories"
+	"github.com/kyverno/kyverno/pkg/engine/jmespath"
 	admissionutils "github.com/kyverno/kyverno/pkg/utils/admission"
 	admissionv1 "k8s.io/api/admission/v1"
 	"k8s.io/apimachinery/pkg/util/yaml"
@@ -52,31 +54,44 @@ func validateAdmissionReview(policySettings CliPolicySettings, request admission
 			Code(400))
 	}
 
-	//TODO: handle userInfo
-	engineContext := enginecontext.NewContext()
-	if err = engineContext.AddRequest(&request); err != nil {
+	cfg := config.NewDefaultConfiguration(false)
+	jp := jmespath.New(cfg)
+
+	// TODO: handle userInfo
+	engineContext := enginecontext.NewContext(jp)
+	if err = engineContext.AddRequest(request); err != nil {
 		return RejectRequest(
 			Message(fmt.Sprintf("engine context: cannot add request %v", err)),
 			Code(500))
 	}
 
-	newR, oldR, err := admissionutils.ExtractResources(nil, &request)
+	e := engine.NewEngine(
+		cfg,
+		config.NewDefaultMetricsConfiguration(),
+		jp,
+		nil,
+		nil,
+		factories.DefaultContextLoaderFactory(nil),
+		nil,
+	)
+
+	newR, oldR, err := admissionutils.ExtractResources(nil, request)
 	if err != nil {
 		return RejectRequest(
 			Message(fmt.Sprintf("cannot extract resources %v", err)),
 			Code(500))
 	}
 
-	policyContext := engine.NewPolicyContextWithJsonContext(engineContext).
+	policyContext := engine.NewPolicyContextWithJsonContext(kyvernov1.Create, engineContext).
 		WithPolicy(policy).
 		WithNewResource(newR).
 		WithOldResource(oldR)
 
-	er := engine.Validate(context.TODO(), registryclient.NewOrDie(), policyContext)
+	er := e.Validate(context.Background(), policyContext)
 
 	errorMsgs := []string{}
 	for index, r := range er.PolicyResponse.Rules {
-		errorMsgs = append(errorMsgs, fmt.Sprintf("[%d] - %s", index, r.Message))
+		errorMsgs = append(errorMsgs, fmt.Sprintf("[%d] - %s", index, r.Message()))
 	}
 
 	if er.IsSuccessful() {
