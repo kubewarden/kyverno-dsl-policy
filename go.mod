@@ -4,7 +4,6 @@ go 1.20
 
 replace (
 	github.com/jmespath/go-jmespath => github.com/kyverno/go-jmespath v0.4.1-0.20210511164400-a1d46efa2ed6
-	github.com/kyverno/kyverno => ./third_party/kyverno-lite
 
 	// TODO: replace with the next release of logrus
 	github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2-wasip1
