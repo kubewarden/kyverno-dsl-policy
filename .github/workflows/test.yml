@@ -1,0 +1,37 @@
+on: [push, pull_request]
+name: Continuous integration
+jobs:
+  test:
+    name: run tests and linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.9
+      - name: remove old kwctl
+        run: |
+          rm -rf ~/.kwctl
+      - name: Install experiemental kwctl
+        uses: kubewarden/github-actions/kwctl-installer@v3.1.9
+        with:
+          KWCTL_VERSION: v1.7.0-rc1
+      - uses: actions/checkout@v3
+        with:
+          # until https://github.com/actions/checkout/pull/579 is released
+          fetch-depth: 0
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "1.21.1"
+      - name: Install wasm-opt
+        run: |
+          wget https://github.com/WebAssembly/binaryen/releases/download/version_116/binaryen-version_116-x86_64-linux.tar.gz
+          tar -xzf binaryen-version_116-x86_64-linux.tar.gz
+          sudo mv binaryen-version_116/bin/wasm-opt /usr/local/bin
+      - name: Build
+        run: |
+          make policy.wasm
+      - name: Annotate
+        run: |
+          make annotated-policy.wasm
+      - name: Run e2e tests
+        run: |
+          make e2e-tests

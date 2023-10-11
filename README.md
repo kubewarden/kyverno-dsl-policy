@@ -27,7 +27,7 @@ to make use of the traditional [waPC execution mode](https://docs.kubewarden.io/
 ### Size and startup time
 
 The amount of code, and dependencies, required to evaluate Kyverno policies is significant.
-The size of this policy is huge, it's approximatively 90 Mb. For comparison, a traditional
+The size of this policy is huge, it's approximatively 62 Mb. For comparison, a traditional
 Kubewarden policy size ranges from 100 Kb up to 2 Mb.
 
 This not only increases the download time, but it takes a long time to be optimized by the

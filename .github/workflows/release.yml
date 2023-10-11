@@ -36,16 +36,23 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-go@v4
         with:
-          go-version: "1.21"
-      - name: Build & annotate
+          go-version: "1.21.1"
+      - name: Install wasm-opt
         run: |
-          GOOS=wasip1 GOARCH=wasm go build -o policy.wasm
+          wget https://github.com/WebAssembly/binaryen/releases/download/version_116/binaryen-version_116-x86_64-linux.tar.gz
+          tar -xzf binaryen-version_116-x86_64-linux.tar.gz
+          sudo mv binaryen-version_116/bin/wasm-opt /usr/local/bin
+      - name: Build
+        run: |
+          make policy.wasm
+      - name: Annotate
+        run: |
           make annotated-policy.wasm
       - name: Run e2e tests
         run: |
           make e2e-tests
       - name: Release
-        uses: kubewarden/github-actions/policy-release@v3.1.4
+        uses: kubewarden/github-actions/policy-release@v3.1.9
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           oci-target: ghcr.io/${{ github.repository_owner }}/policies/kyverno-dsl
