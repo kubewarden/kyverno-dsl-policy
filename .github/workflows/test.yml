@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.9
+        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.10
       - name: remove old kwctl
         run: |
           rm -rf ~/.kwctl
       - name: Install experiemental kwctl
-        uses: kubewarden/github-actions/kwctl-installer@v3.1.9
+        uses: kubewarden/github-actions/kwctl-installer@v3.1.10
         with:
           KWCTL_VERSION: v1.7.0-rc1
       - uses: actions/checkout@v4
