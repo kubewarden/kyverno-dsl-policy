@@ -1,6 +1,6 @@
 module github.com/kubewarden/kyverno-dsl-policy
 
-go 1.21.4
+go 1.21.5
 
 replace (
 	github.com/google/go-containerregistry => ./stubs/github.com/google/go-containerregistry
