@@ -29,11 +29,6 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.21.1"
-      - name: Install wasm-opt
-        run: |
-          wget https://github.com/WebAssembly/binaryen/releases/download/version_116/binaryen-version_116-x86_64-linux.tar.gz
-          tar -xzf binaryen-version_116-x86_64-linux.tar.gz
-          sudo mv binaryen-version_116/bin/wasm-opt /usr/local/bin
       - name: Build
         run: |
           make policy.wasm
