@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.15
+        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.1.16
       - uses: actions/checkout@v4
         with:
           # until https://github.com/actions/checkout/pull/579 is released
