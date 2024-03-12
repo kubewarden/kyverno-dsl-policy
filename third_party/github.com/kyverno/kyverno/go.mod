@@ -1,3 +1,3 @@
 module github.com/kyverno/kyverno
 
-go 1.21.6
+go 1.22.1
