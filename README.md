@@ -1,4 +1,5 @@
-> **WARNING:** this is an experimental policy
+[![Kubewarden Policy Repository](https://github.com/kubewarden/community/blob/main/badges/kubewarden-policies.svg)](https://github.com/kubewarden/community/blob/main/REPOSITORIES.md#policy-scope)
+[![Sandbox](https://img.shields.io/badge/status-sandbox-red?style=for-the-badge)](https://github.com/kubewarden/community/blob/main/REPOSITORIES.md#sandbox)
 
 This policy aims to provide a way to reuse [Kyverno policies](https://kyverno.io/docs/writing-policies/) with Kubewarden.
 
