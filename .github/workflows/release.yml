@@ -8,9 +8,12 @@ on:
 name: Release policy
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  test:
+    name: run tests and linters
+    uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-go-wasi.yml@v3.3.5
 
+  release:
+    needs: test
     permissions:
       # Required to create GH releases
       contents: write
@@ -19,27 +22,6 @@ jobs:
       # Required by cosign keyless signing
       id-token: write
 
-    steps:
-      - name: Install dependencies
-        uses: kubewarden/github-actions/policy-gh-action-dependencies@v3.3.5
-      - uses: actions/checkout@v4
-        with:
-          # until https://github.com/actions/checkout/pull/579 is released
-          fetch-depth: 0
-      - uses: actions/setup-go@v5
-        with:
-          go-version: "1.21.1"
-      - name: Build
-        run: |
-          make policy.wasm
-      - name: Annotate
-        run: |
-          make annotated-policy.wasm
-      - name: Run e2e tests
-        run: |
-          make e2e-tests
-      - name: Release
-        uses: kubewarden/github-actions/policy-release@v3.3.5
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          oci-target: ghcr.io/${{ github.repository_owner }}/policies/kyverno-dsl
+    uses: kubewarden/github-actions/.github/workflows/reusable-release-policy-go-wasi.yml@v3.3.5
+    with:
+      oci-target: ghcr.io/${{ github.repository_owner }}/policies/kyverno-dsl
