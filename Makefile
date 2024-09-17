@@ -31,6 +31,9 @@ clean:
 	go clean
 	rm -f policy.wasm annotated-policy.wasm artifacthub-pkg.yml
 
+test:
+	echo "No tests implemented - refer to e2e-tests"
+
 .PHONY: e2e-tests
 e2e-tests: annotated-policy.wasm
 	bats e2e.bats
