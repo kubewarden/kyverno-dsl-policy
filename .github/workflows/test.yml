@@ -4,3 +4,5 @@ jobs:
   test:
     name: run tests and linters
     uses: kubewarden/github-actions/.github/workflows/reusable-test-policy-go-wasi.yml@v3.3.5
+    with:
+      artifacthub: false
