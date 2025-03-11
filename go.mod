@@ -9,7 +9,7 @@ replace (
 
 	github.com/sigstore/k8s-manifest-sigstore => ./stubs/github.com/sigstore/k8s-manifest-sigstore
 	// TODO: replace with the next release of logrus
-	github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2-wasip1
+	github.com/sirupsen/logrus => github.com/flavio/logrus v1.9.2
 )
 
 require (
