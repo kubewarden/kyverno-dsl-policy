@@ -13,7 +13,7 @@ replace (
 )
 
 require (
-	github.com/kyverno/kyverno v1.10.3
+	github.com/kyverno/kyverno v1.13.0
 	k8s.io/api v0.27.2
 	k8s.io/apimachinery v0.27.2
 )
