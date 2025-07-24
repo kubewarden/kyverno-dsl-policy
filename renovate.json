@@ -1,13 +1,23 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "github>kubewarden/github-actions//renovate-config/policies"
   ],
   "packageRules": [
     {
-      "description": "Update GitHub Actions",
-      "matchManagers": ["github-actions"],
-      "groupName": "github-actions",
-      "groupSlug": "github-actions"
+      "description": "Disable all non-GitHub-Action updates",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "excludePackageNames": [],
+      "enabled": false
+    },
+    {
+      "description": "Enable updates for GitHub Actions",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "enabled": true
     }
   ]
 }
